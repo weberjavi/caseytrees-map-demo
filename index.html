@@ -23,7 +23,7 @@ new DeckGL({
     latitude: 38.91825,
     zoom: 14
   },
-  controller: true,
+  controller: {scrollZoom: false, inertia: true},
   layers: [
     new MVTLayer({
       data: 'https://drcfeu34yefjd.cloudfront.net/dev/urban_forestry_street_trees/{z}/{x}/{y}.pbf',
