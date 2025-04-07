@@ -1,0 +1,38 @@
+<script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+<!-- optional if maplibre base map is needed -->
+<script src="https://unpkg.com/maplibre-gl@3.0.0/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@3.0.0/dist/maplibre-gl.css" rel="stylesheet" />
+<!-- Allow the map to render in full screen  -->
+<style>
+  body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
+</style>
+
+<div id="map" style="width: 100%; height: 100%;"></div>
+
+<script>
+const {DeckGL, MVTLayer} = deck;
+
+new DeckGL({
+  mapStyle: 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json',
+  initialViewState: {
+    longitude: -77.01047,
+    latitude: 38.91825,
+    zoom: 14
+  },
+  controller: true,
+  layers: [
+    new MVTLayer({
+      data: 'https://drcfeu34yefjd.cloudfront.net/dev/urban_forestry_street_trees/{z}/{x}/{y}.pbf',
+      minZoom: 14,
+      getFillColor: [0, 170, 0],
+      getLineColor: [192, 192, 192],
+      getPointRadius: 2,
+      pointRadiusUnits: 'pixels',
+    })
+  ]
+});
+</script>
